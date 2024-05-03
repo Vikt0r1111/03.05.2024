@@ -1,0 +1,32 @@
+<!-- post_detail.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Detail</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+
+    <h2>Comments</h2>
+    {% for comment in comments %}
+        <p>{{ comment.author }} says: {{ comment.content }}</p>
+    {% endfor %}
+
+    <h2>Add Comment</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
